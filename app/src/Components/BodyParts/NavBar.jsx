@@ -14,27 +14,21 @@ const Navbar = () => {
                           </div>  
                   </li>
                   <li className="item" >
-                       <NavLink>
+                       <NavLink to="/Home">
                           <i className="fa-solid fa-house"></i>
                           <span className="nav-item">Home</span>
                        </NavLink>
                   </li>
                   <li className="item" >
-                       <NavLink>
+                       <NavLink to="/Home/Profil">
                           <i className="fa-solid fa-user"></i>
                           <span className="nav-item">Profil</span>
                        </NavLink>
                   </li>
                   <li className="item" >
-                       <NavLink>
+                       <NavLink to="/Home/MyExams" >
                           <i className="fa-solid fa-scroll"></i>
                           <span className="nav-item">My Exams</span>
-                       </NavLink>
-                  </li>
-                  <li className="item" >
-                       <NavLink>
-                          <i class="fa-solid fa-clipboard"></i>
-                          <span className="nav-item">My note</span>
                        </NavLink>
                   </li>
                   <li className="logout">

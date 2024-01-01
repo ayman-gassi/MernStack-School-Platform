@@ -1,6 +1,7 @@
 import '../../Assets/css/Auth.css'
 import Logo from '../../Assets/img/Logo.png'
 import Este from '../../Assets/img/ESTE.png'
+import { NavLink } from 'react-router-dom'
  const Navbar = () => {
     return (
         <>
@@ -33,7 +34,7 @@ import Este from '../../Assets/img/ESTE.png'
 
                   <div class="mt-6">
                       <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-sky-500 rounded-lg hover:bg-sky-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                          Sign In
+                         <NavLink to="/Home">Sign In</NavLink> 
                       </button>
                   </div>
 

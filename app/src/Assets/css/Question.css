@@ -1,0 +1,12 @@
+.QuestionContainer{
+    padding-bottom: 20px;
+    padding-left: 10%;
+    padding-right: 4%;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    width: 100%;
+}
+.InfoFiliere{
+    height: 100vh;
+}
