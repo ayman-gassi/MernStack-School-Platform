@@ -1,0 +1,16 @@
+.Ctrn{
+    height: 100vh;
+    background-image: url('../img/LoginBackGround.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ESTE{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ESTE img{
+    width: 80%;
+}
