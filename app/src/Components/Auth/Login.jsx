@@ -33,9 +33,9 @@ import { NavLink } from 'react-router-dom'
                   </div>
 
                   <div class="mt-6">
-                      <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-sky-500 rounded-lg hover:bg-sky-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                         <NavLink to="/Home">Sign In</NavLink> 
-                      </button>
+                  <NavLink to="/Home"><button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-sky-500 rounded-lg hover:bg-sky-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                         Sign In
+                      </button></NavLink> 
                   </div>
 
                   <div class="flex items-center justify-between mt-4">
