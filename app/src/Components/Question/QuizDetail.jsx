@@ -1,5 +1,3 @@
-
-import { PaperClipIcon } from '@heroicons/react/20/solid'
 import { NavLink } from 'react-router-dom'
 
 export default function QuizDetail() {

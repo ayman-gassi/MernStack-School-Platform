@@ -8,13 +8,21 @@ router.use(express.static('public'));
 
 router.post('/login', async (req, res) => {
     try {
+        console.log('Received login request:', req.body);
+
         const { email, password } = req.body;
-        let result = await Login(email,password);
+        console.log('Attempting login with email:', email);
+
+        let result = await Login(email, password);
+
         if (result) {
-            req.session.user = {result} ;
-            res.json({ success: true, message: " LOGIN SUCCESFULLY " });
-            console.log("LOGIN SUCCESFULLY");
+            console.log('Login successful. User data:', result);
+            // Ensure 'result' contains the necessary user information
+            req.session.user = result;
+            res.json({ success: true, message: "LOGIN SUCCESSFULLY" });
+            console.log("LOGIN SUCCESSFULLY");
         } else {
+            console.log('Invalid credentials');
             res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
     } catch (error) {
@@ -22,6 +30,7 @@ router.post('/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
 
 
 router.post("/Register",async(req,res)=>{
@@ -44,7 +53,7 @@ router.post("/Register",async(req,res)=>{
 })
 
 router.get('/userinfo', (req, res) => {
-    console.log("S"+JSON.stringify(req.session.user, null, 2));
+    console.log(JSON.stringify(req.session.user, null, 2));
     if (req.session.user) {
         res.json({ success: true, user: req.session.user });
         console.log("DATA PASSED SUCCESs")

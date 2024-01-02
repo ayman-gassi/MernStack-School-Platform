@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom"
 import pic from "../../Assets/img/1.jpeg"
-import User from "../../Assets/img/teacherM.png"
 export default function Filiere(){
     return(
         <>
