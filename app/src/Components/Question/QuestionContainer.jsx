@@ -63,7 +63,7 @@ export default function QuestionContainer() {
         </div>
       </div>
     </div>
-    <div className="QuestionContainer">
+    <div className="QuestionContainer mt-20">
             <div class="relative items-center w-full mx-auto md:px-12 lg:px-24 max-w-7xl">
                 <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
                       <Quiz></Quiz>

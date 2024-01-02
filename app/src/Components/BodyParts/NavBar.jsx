@@ -6,7 +6,7 @@ const NavBar = () => {
      const [Mobile,setMobile] = useState(false);      
     return (
      <>
-        <nav class="z-50 w-full fixed px-4 py-4 flex justify-between items-center bg-white">
+        <nav class="z-50 w-full fixed px-4 py-4 flex justify-between items-center bg-white shadow-md">
                 <NavLink to="/Home" class="text-3xl font-bold leading-none" href="#">
                     <img class='w-10'  src={Logo}  />
 		      </NavLink>
@@ -18,19 +18,19 @@ const NavBar = () => {
 			</button>
 		</div>
 		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><NavLink to="/Home" class="text-sm text-gray-400 hover:text-sky-600 font-bold" >Home</NavLink></li>
+			<li class="text-sm text-gray-400 hover:text-sky-600 font-bold" ><NavLink to="/Home"  >Home</NavLink></li>
 			<li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-			<li><NavLink to="/Home/MyExams" class="text-sm text-gray-400 hover:text-sky-600 font-bold" >My Exams</NavLink></li>
+			<li  class="text-sm text-gray-400 hover:text-sky-600 font-bold"  ><NavLink to="/Home/MyExams" >My Exams</NavLink></li>
                <li class="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 				</svg>
 			</li>
-               <li><NavLink to="/Home/Profil" class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="#">Profil</NavLink></li>
+               <li class="text-sm text-gray-400 hover:text-sky-600 font-bold"  ><NavLink to="/Home/Profil"  href="#">Profil</NavLink></li>
 		</ul>
           <div class="SwitchButtuns">
                <NavLink to=""><button class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" > Log Out <i class="fa-solid fa-right-from-bracket ml-1"></i> </button></NavLink>
@@ -53,7 +53,7 @@ const NavBar = () => {
 			<div>
 				<ul>
 					<li class="mb-1">
-                         <NavLink to="/Home"><button class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</button></NavLink>
+                         <NavLink to="/Home"  ><button class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</button></NavLink>
 					</li>
 					<li class="mb-1">
                          <NavLink to="/Home/MyExams"  ><button  class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" >My Exams</button></NavLink>
@@ -71,7 +71,10 @@ const NavBar = () => {
 		</nav>
      </div>
      ):null}
-          <Outlet></Outlet>
+	 <div>
+	 <Outlet></Outlet>
+	 </div>
+        
      </>
     )
 }
