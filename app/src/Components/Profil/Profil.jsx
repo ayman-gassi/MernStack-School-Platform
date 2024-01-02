@@ -4,8 +4,8 @@ import User from "../../Assets/img/studentM.png"
 export default function Profil(){
     return(
         <>
-<div class="max-w-2xl  mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
-    <div class="rounded-t-lg h-32 overflow-hidden">
+<div class="max-w-2xl  mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm  xl:mx-auto bg-white shadow-xl rounded-lg text-gray-900">
+    <div class="rounded-t-lg h-34 overflow-hidden">
         <img class="object-contain object-top w-full" src={Background} alt='Mountain'/>
     </div>
     <div class="mx-auto w-32 h-32 relative  bg-white -mt-16 border-4 border-white rounded-full overflow-hidden">
