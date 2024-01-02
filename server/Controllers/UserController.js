@@ -13,7 +13,6 @@ async function getStudentbyEmail(email,job='Student'){
 async function getStudentbyEmail_Password(email, password, job = 'Student') {
     try {
         const result = await Person.findOne({ Email: email, Password: password, Job: job });
-        console.log('Query Result:', result);
         return result;
     } catch (e) {
         console.error("Error during getStudentbyEmail_Password:", e);

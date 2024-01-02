@@ -8,7 +8,8 @@ import axios from 'axios';
  const Navbar = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [fullName, setFullName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [gender, setGender] = useState('');
     const [error, setError] = useState('');
     const [RegisterSection,setRegisterSection] = useState(false);
@@ -31,7 +32,7 @@ import axios from 'axios';
                 },
             });
 
-            if (response.data.success) {
+            if (response.data===true) {
                 navigate('/Home');
             } else {
                 setLoginErrorSection(true);
@@ -45,14 +46,15 @@ import axios from 'axios';
         }
     };
     const handleRegister = async () => {
-        if(email === '' || password === '' || fullName === ''|| gender === ''){
+        if(email === '' || password === '' || firstName === '' || lastName === '' || gender === ''){
             setRegisterErrorSection(true);
             setError("Fill All the Blanks")
         }
         else{
             try {
                 const response = await axios.post('http://localhost:3000/api/register', {
-                    fullName,
+                    firstName,
+                    lastName,
                     gender,
                     email,
                     password,
@@ -62,7 +64,7 @@ import axios from 'axios';
                     },
                 });
     
-                if (response.data.success) {
+                if (response.data===true) {
                     navigate('/Home');
                 } else {
                     console.error('Login failed:', response.data.message);
@@ -82,8 +84,8 @@ import axios from 'axios';
         <div className="Ctrn">
           <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
           
-                <div className="ESTE hidden lg:block lg:w-1/2">
-                     <img alt="pic" src={Este} />
+                <div className="ESTE hidden hidden lg:block lg:w-1/2">
+                     <img alt="pic" className='hidden lg:block lg:w-1/2'  src={Este} />
                 </div> 
                 
             {RegisterSection===false?(
@@ -141,8 +143,12 @@ import axios from 'axios';
                    <>
                    <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
                   <div className="mt-4">
-                      <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="LoggingEmailAddress">Full Name</label>
-                      <input  onChange={(e)=>setFullName(e.target.value)}  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="email" />
+                      <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="LoggingEmailAddress">First Name</label>
+                      <input  onChange={(e)=>setFirstName(e.target.value)}  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="email" />
+                  </div>
+                  <div className="mt-4">
+                      <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="LoggingEmailAddress">Last Name</label>
+                      <input  onChange={(e)=>setLastName(e.target.value)}  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="email" />
                   </div>
                   <div className="mt-4">
                             <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="LoggingEmailAddress">Gender</label>

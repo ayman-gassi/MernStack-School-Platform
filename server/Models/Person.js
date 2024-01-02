@@ -8,7 +8,7 @@ const person = new Schema({
     },
     Gender: {
         type: String,
-        enum: ['Men','Women']
+        enum: ['Male','Female']
     },
     Job:{
         type: String,

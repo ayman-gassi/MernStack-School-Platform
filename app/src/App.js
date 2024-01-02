@@ -8,7 +8,24 @@ import QuizDetail from "./Components/Question/QuizDetail";
 import QuizStart from "./Components/Question/QuizStart";
 import Profil from "./Components/Profil/Profil";
 import MyExams from "./Components/QuestionResult/MyExams";
+import { useEffect } from "react";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function App() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:3000/api/Connection');
+        if(response.data === true){
+          navigate('/');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  },[])
   return (
       <>
          <Routes>

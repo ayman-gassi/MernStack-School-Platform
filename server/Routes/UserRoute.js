@@ -1,29 +1,32 @@
 const { getStudentbyEmail } = require("../Controllers/UserController");
 const { Login , Register } = require("../Middlewares/auth");
 const router = require("express").Router();
-const express = require("express");
+let User = null ;
 
-router.use(express.static('public'));
-
+router.post('/Connection', async (req, res) => {
+    console.log("Check")
+        if(User === null){
+            res.send(true)
+        }
+        else{
+            res.send(false)
+        }
+});
 
 router.post('/login', async (req, res) => {
     try {
-        console.log('Received login request:', req.body);
-
         const { email, password } = req.body;
         console.log('Attempting login with email:', email);
-
         let result = await Login(email, password);
-
         if (result) {
-            console.log('Login successful. User data:', result);
-            // Ensure 'result' contains the necessary user information
             req.session.user = result;
-            res.json({ success: true, message: "LOGIN SUCCESSFULLY" });
+            User = result;
+            console.log(req.session.user.Email + " Session Saved");
+            res.send(true);
             console.log("LOGIN SUCCESSFULLY");
         } else {
             console.log('Invalid credentials');
-            res.status(401).json({ success: false, message: 'Invalid credentials' });
+            res.send(false);
         }
     } catch (error) {
         console.error("Error during login:", error);
@@ -34,33 +37,31 @@ router.post('/login', async (req, res) => {
 
 
 router.post("/Register",async(req,res)=>{
-    let reqi = await getStudentbyEmail(req.body.email);
-    if(reqi){
-        // SOME CONDITIONS 
-        console.log(" EMAIL ALREADY EXIST ")
-    }
-    else{
-        let result = await Register(req.body.fname, req.body.lname, req.body.email,req.body.gender,req.body.password);
-        if(result){
-            req.session.user = {result} ; 
-            // SHOW THE HOME PAGE 
-            console.log("REGISTER SUCCESSFULLY")
+    try{
+        let reqi = await getStudentbyEmail(req.body.email);
+        if(reqi){
+            res.send(false);
+            console.log(" EMAIL ALREADY EXIST ")
         }
         else{
-            // SHOW THE REGISTER PAGE 
+            let result = await Register(req.body.firstName, req.body.lastName,req.body.email , req.body.gender,req.body.password);
+            if(result){
+                req.session.user = result ; 
+                console.log("REGISTER SUCCESSFULLY")
+                res.send(true)
+            }
         }
+    }catch (error) {
+        console.error("Error during Register:", error);
+        res.status(500).send("Internal Server Error");
     }
+
+  
 })
 
-router.get('/userinfo', (req, res) => {
-    console.log(JSON.stringify(req.session.user, null, 2));
-    if (req.session.user) {
-        res.json({ success: true, user: req.session.user });
-        console.log("DATA PASSED SUCCESs")
-    } else {
-        res.status(401).json({ success: false, message: 'User not logged in' });
-        console.log("User not logged in")
-    }
+router.post('/userinfo', (req, res) => {
+    console.log(req.session.user)
+    res.send(User)
 });
 
 router.get("/logout",(req,res)=>{
@@ -72,12 +73,11 @@ router.get("/logout",(req,res)=>{
             }
             else{
                 console.log("DESTROYED SUCCESFULLY");
-                // GO TO LOGIN :
             }
         })
     }
     else{
-        // GO TO LOGIN 
+
     }
 })
 
