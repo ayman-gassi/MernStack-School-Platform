@@ -53,7 +53,7 @@ const NavBar = () => {
 			<div>
 				<ul>
 					<li class="mb-1">
-                         <NavLink to="/Home"    ><button class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</button></NavLink>
+                         <NavLink to="/Home"><button class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</button></NavLink>
 					</li>
 					<li class="mb-1">
                          <NavLink to="/Home/MyExams"  ><button  class="w-full block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" >My Exams</button></NavLink>
