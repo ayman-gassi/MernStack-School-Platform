@@ -3,7 +3,9 @@ import Computer from "../../Assets/img/1.jpeg"
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import Quiz from "./Quiz";
 import "../../Assets/css/Question.css"
+import { useParams } from 'react-router-dom';
 export default function QuestionContainer() {
+  let { name } = useParams();
   return (
     <>
     <div className="InfoFiliere relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
