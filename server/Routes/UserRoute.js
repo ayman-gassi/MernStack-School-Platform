@@ -1,6 +1,7 @@
 const { getStudentbyEmail } = require("../Controllers/UserController");
 const { Login , Register } = require("../Middlewares/auth");
 const {getAllFields,getField} = require('../Controllers/FieldController')
+const {getAllQuestions} = require('../Controllers/QuestionController')
 const router = require("express").Router();
 let User = null ;
 
@@ -93,6 +94,17 @@ router.post('/userinfo', (req, res) => {
     res.send(User)
 });
 
+router.get("/start",async(req,res)=>{
+    try{
+        let result = await getAllFields();
+        if(result){
+            console.log(result);
+            res.send(result);
+        }
+    }catch(error){
+        console.log("ERROR"+error);
+    }
+});
 router.get("/logout",(req,res)=>{
     if(req.session.std){
         req.session.destroy((err)=>{
@@ -109,5 +121,6 @@ router.get("/logout",(req,res)=>{
 
     }
 })
+
 
 module.exports = router;
