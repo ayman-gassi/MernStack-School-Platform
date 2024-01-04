@@ -1,24 +1,28 @@
 const { Schema , model } = require("mongoose");
 
 const response = new Schema({
-    text:{
+    Text:{
         type : String ,
         required : true
     },
-    isCorrect:{
+    IsCorrect:{
         type:Boolean,
         required:true,
     },
 });
 const question = new Schema({
-    idExam: Number ,
-    text:{
+    Text:{
         type : String ,
         required : true
     },
-    responses:[response],
+    Responses:[response],
+});
+const questions = new Schema({
+    NameExam: String ,
+    Questions:[question],
 });
 
-const Question = model('question',question);
+
+const Question = model('questions',questions);
 
 module.exports = {Question};
