@@ -2,6 +2,7 @@ const { getStudentbyEmail } = require("../Controllers/UserController");
 const { Login , Register } = require("../Middlewares/auth");
 const {getAllFields,getField} = require('../Controllers/FieldController')
 const {getExam} = require('../Controllers/ExamController')
+const {getAllQuestions} = require('../Controllers/QuestionController')
 const router = require("express").Router();
 let User = null ;
 
@@ -106,6 +107,17 @@ router.post('/userinfo', (req, res) => {
     res.send(User)
 });
 
+router.get("/start",async(req,res)=>{
+    try{
+        let result = await getAllFields();
+        if(result){
+            console.log(result);
+            res.send(result);
+        }
+    }catch(error){
+        console.log("ERROR"+error);
+    }
+});
 router.get("/logout",(req,res)=>{
     console.log("calling logout")
         User = null ;
@@ -113,5 +125,6 @@ router.get("/logout",(req,res)=>{
             res.send(true)
         }
 })
+
 
 module.exports = router;

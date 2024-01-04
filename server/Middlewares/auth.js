@@ -18,4 +18,5 @@ async function Register(Fname,Lname,email,gender,password){
         throw e; 
     }
 }
+
 module.exports = {Login , Register};

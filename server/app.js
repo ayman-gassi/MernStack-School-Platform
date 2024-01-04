@@ -23,5 +23,5 @@ db.on('error', console.error.bind(console, 'Connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB database');
     app.use("/api", userRoute);
-});
+}); 
 app.listen(3000);
