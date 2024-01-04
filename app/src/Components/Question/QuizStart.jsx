@@ -29,7 +29,13 @@ export default function QuizStart(){
       }, 1000);
       return () => clearInterval(interval);
     },[])
-      window.addEventListener('beforeunload',alert("You Are in a test"));
+      const handleBeforeUnload = (event) => {
+      if (remainingTime > 0) {
+        event.returnValue = window.confirm();
+      }
+    };
+      window.addEventListener('beforeunload',handleBeforeUnload);
+
       const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = time % 60;
@@ -37,8 +43,11 @@ export default function QuizStart(){
       };
         return(
             <>
-        <div>
-          <p>Remaining Time: {formatTime(remainingTime)}</p>
+        <div class=" w-full bg-white fixed text-center py-4 lg:px-4">
+          <div class="p-2 bg-indigo-800 items-center  text-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+            <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">remaining Time</span>
+            <span class="font-semibold mr-2 text-left flex-auto">{formatTime(remainingTime)}</span>
+          </div>
         </div>
             <div class="bg-white border rounded-lg px-9 py-6 mx-auto my-8 max-w-5xl">
                 <h2 class="text-2xl font-medium mb-4">{name}</h2>
