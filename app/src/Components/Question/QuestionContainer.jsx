@@ -8,11 +8,13 @@ import axios from 'axios';
 export default function QuestionContainer() {
   let { name } = useParams();
   const [CurrentField,setCurrentField] = useState([]);
+  const [Exam,setExam] = useState([]);
   useEffect(()=>{
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/getField/'+name);
-        setCurrentField(response.data);
+        setCurrentField(response.data.Field);
+        setExam(response.data.Exam);
       } catch (error) {
         console.error(error);
       }
@@ -78,18 +80,12 @@ export default function QuestionContainer() {
         </div>
       </div>
     </div>
-    <div className="QuestionContainer mt-20">
+    <div className="QuestionContainer mt-15 mb-4">
             <div class="relative items-center w-full mx-auto md:px-12 lg:px-24 max-w-7xl">
                 <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
-                      <Quiz></Quiz>
-                      <Quiz></Quiz>
-
-                      <Quiz></Quiz>
-
-                      <Quiz></Quiz>
-
-                      <Quiz></Quiz>
-
+                    {Exam.map(item => (
+                      <Quiz key={item.id}  Name={item.Name}  PicSrc={item.PicSrc}  Teacher={item.Teacher}  Qnbr={item.Qnbr}  />
+                    ))}
                 </div>
             </div>
 

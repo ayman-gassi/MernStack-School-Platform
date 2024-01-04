@@ -1,6 +1,6 @@
 const { getStudentbyEmail } = require("../Controllers/UserController");
 const { Login , Register } = require("../Middlewares/auth");
-const {getAllFields} = require('../Controllers/FieldController')
+const {getAllFields,getField} = require('../Controllers/FieldController')
 const router = require("express").Router();
 let User = null ;
 
@@ -23,7 +23,22 @@ router.get('/getAllFields', async (req, res) => {
             console.log('no fields');
         }
     } catch (error) {
-        console.error("Error during login:", error);
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+router.get('/getField/:name', async (req, res) => {
+    console.log("calling getField")
+    try {
+        let result = await getField(req.params.name);
+        if (result) {
+            console.log(result)
+            res.send(result);
+        } else {
+            console.log('no field');
+        }
+    } catch (error) {
+        console.error("Error:", error);
         res.status(500).send("Internal Server Error");
     }
 });
