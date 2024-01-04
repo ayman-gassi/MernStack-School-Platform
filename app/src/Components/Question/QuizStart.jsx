@@ -8,8 +8,8 @@ export default function QuizStart(){
     useEffect(()=>{
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/api/start/'+ name);
-          setCurrentQcm(response.data)
+          const response = await axios.post('http://localhost:3000/api/start/'+ name);
+          setCurrentQcm(response.data.Questions)
         } catch (error) {
           console.error(error);
         }
@@ -22,10 +22,10 @@ export default function QuizStart(){
                 <h2 class="text-2xl font-medium mb-4">{name}</h2>
                 <form>
                     {currentQcm.map(item => (
-                        <QuestionLine key={item.id}  Question={item.Questions.Text} choice1 ={item.Questions.Responses[0].Text} choice2 ={item.Questions.Responses[1].Text} choice3 ={item.Questions.Responses[2].Text}choice4 ={item.Questions.Responses[3].Text}  />
+                        <QuestionLine key={item.id}  Question={item.Text} choice1 ={item.Responses[0].Text} choice2 ={item.Responses[1].Text} choice3 ={item.Responses[2].Text}choice4 ={item.Responses[3].Text}  />
                     ))}
                     <div>
-                        <button type="submit" class=" w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
+                        <button type="button" class=" w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
                     </div>
                 </form>
             </div>

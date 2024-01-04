@@ -19,7 +19,6 @@ router.get('/getAllFields', async (req, res) => {
     try {
         let result = await getAllFields();
         if (result) {
-            console.log(result)
             res.send(result);
         } else {
             console.log('no fields');
@@ -34,7 +33,6 @@ router.get('/getField/:name', async (req, res) => {
     try {
         let result = await getField(req.params.name);
         if (result) {
-            console.log(result)
             res.send(result);
         } else {
             console.log('no field');
@@ -49,7 +47,6 @@ router.get('/getExam/:name', async (req, res) => {
     try {
         let result = await getExam(req.params.name);
         if (result) {
-            console.log(result)
             res.send(result);
         } else {
             console.log('no Exam');
@@ -67,7 +64,6 @@ router.post('/login', async (req, res) => {
         if (result) {
             req.session.user = result;
             User = result;
-            console.log(req.session.user.Email + " Session Saved");
             res.send(true);
             console.log("LOGIN SUCCESSFULLY");
         } else {
@@ -107,9 +103,9 @@ router.post('/userinfo', (req, res) => {
     res.send(User)
 });
 
-router.get("/start/:name",async(req,res)=>{
+router.post("/start/:name",async(req,res)=>{
     const name = req.params.name;
-    console.log("calling start" + name)
+    console.log("calling start")
     try{
         let result = await getAllQuestions(name);
         if(result){
