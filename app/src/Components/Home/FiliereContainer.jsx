@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect, useState } from 'react';
 import axios from 'axios';
 import Filiere from "./Filiere";
+
 
 export default function FiliereContainer (){
     const [AllFields,setAllFields] = useState([]);
@@ -28,7 +29,7 @@ export default function FiliereContainer (){
                     </div> 
                     <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
                             {AllFields.map(item => (
-                                <Filiere key={item.id} Name={item.Name} PicSrc={item.PicSrc} Qnbr={item.Qnbr} Desc={item.Desc} />
+                                <Filiere key={item.id} Name={item.Name} PicSrc={item.PicSrc} Enbr={item.Enbr} Desc={item.Desc.substring(0, 50)} />
                             ))}
                     </div>  
                 </div>

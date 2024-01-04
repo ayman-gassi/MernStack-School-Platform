@@ -1,11 +1,25 @@
 
-import Computer from "../../Assets/img/1.jpeg"
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import Quiz from "./Quiz";
 import "../../Assets/css/Question.css"
 import { useParams } from 'react-router-dom';
+import { useState , useEffect } from "react";
+import axios from 'axios';
 export default function QuestionContainer() {
   let { name } = useParams();
+  const [CurrentField,setCurrentField] = useState([]);
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/getField/'+name);
+        setCurrentField(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  },[])
   return (
     <>
     <div className="InfoFiliere relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
@@ -40,16 +54,15 @@ export default function QuestionContainer() {
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
               <p className="text-base font-semibold leading-7 text-sky-500">Filiere</p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Computer Science</h1>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{CurrentField.Name}</h1>
               <p className="mt-6 text-base leading-7 text-gray-700 lg:max-w-lg">
-                Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam
-                eget aliquam. Quisque id at vitae feugiat egestas.
+                {CurrentField.Desc}
               </p>
               <ul role="list" className="mt-8 space-y-8 text-gray-600">
                 <li className="flex gap-x-3">
                 <BookOpenIcon class="mt-1 h-5 w-5 flex-none text-sky-500" aria-hidden="true"/>
                   <span>
-                    <strong className="font-semibold text-gray-900">10 Exams</strong>
+                    <strong className="font-semibold text-gray-900">{CurrentField.Enbr} Exams</strong>
                   </span>
                 </li>
               </ul>
@@ -59,8 +72,8 @@ export default function QuestionContainer() {
         <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
           <img
             className="w-[40rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[40rem]"
-            src={Computer}
-            alt=""
+            src={CurrentField.PicSrc}
+            alt="dsadsa"
           />
         </div>
       </div>

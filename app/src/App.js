@@ -1,4 +1,4 @@
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route,useNavigate} from "react-router-dom"
 import Login from "./Components/Auth/Login";
 import PageNotFound from "./Components/PageNotFound/PageNotFound";
 import Navbar from "./Components/BodyParts/NavBar";
@@ -8,11 +8,11 @@ import QuizDetail from "./Components/Question/QuizDetail";
 import QuizStart from "./Components/Question/QuizStart";
 import Profil from "./Components/Profil/Profil";
 import MyExams from "./Components/QuestionResult/MyExams";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 function App() {
   const navigate = useNavigate();
+  const [AllFields,setAllFields] = useState([]);
   useEffect(()=>{
     const fetchData = async () => {
       try {

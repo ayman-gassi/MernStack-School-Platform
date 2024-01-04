@@ -11,8 +11,8 @@ export default function Filiere(props){
                   <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {props.Name}
                   </h3>
-                  <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{props.Desc}</p>
-                  <p className="flex items-center  mt-3 mb-4 font-light text-gray-500 dark:text-gray-400"><BookOpenIcon class="h-6 w-6 text-gray-500 mr-1" />{props.Qnbr}</p>
+                  <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{props.Desc}...</p>
+                  <p className="flex items-center  mt-3 mb-4 font-light text-gray-500 dark:text-gray-400"><BookOpenIcon class="h-6 w-6 text-gray-500 mr-1" />{props.Enbr}</p>
                   <NavLink to={`/Home/${props.Name}`} ><button type="button" className="w-full text-sky-500 hover:text-white border border-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  py-2.5 text-center "> Voir </button></NavLink>
               </div>
           </div> 
