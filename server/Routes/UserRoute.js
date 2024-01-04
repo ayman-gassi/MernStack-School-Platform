@@ -107,9 +107,11 @@ router.post('/userinfo', (req, res) => {
     res.send(User)
 });
 
-router.get("/start",async(req,res)=>{
+router.get("/start/:name",async(req,res)=>{
+    const name = req.params.name;
+    console.log("calling start" + name)
     try{
-        let result = await getAllFields();
+        let result = await getAllQuestions(name);
         if(result){
             console.log(result);
             res.send(result);

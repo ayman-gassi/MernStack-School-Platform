@@ -18,7 +18,7 @@ const question = new Schema({
     Responses:[response],
 });
 const questions = new Schema({
-    NameExam: String ,
+    Name: String ,
     Questions:[question],
 });
 

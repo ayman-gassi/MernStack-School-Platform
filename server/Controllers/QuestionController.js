@@ -1,8 +1,8 @@
 const {Question} = require("../Models/Question");
 
-async function getAllQuestions() {
+async function getAllQuestions(name) {
     try{
-        let result = await Question.find();
+        let result = await Question.findOne({Name : name});
         return result ;
     }
     catch(e){

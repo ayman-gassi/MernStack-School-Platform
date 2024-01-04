@@ -8,7 +8,7 @@ export default function QuizStart(){
     useEffect(()=>{
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/api/start/'+name);
+          const response = await axios.get('http://localhost:3000/api/start/'+ name);
           setCurrentQcm(response.data)
         } catch (error) {
           console.error(error);
@@ -21,7 +21,9 @@ export default function QuizStart(){
             <div class="bg-white border rounded-lg px-9 py-6 mx-auto my-8 max-w-5xl">
                 <h2 class="text-2xl font-medium mb-4">{name}</h2>
                 <form>
-                    <QuestionLine  Question="das" choice1 ="f"  choice2 ="f" choice3 ="f" choice4 ="f"  />
+                    {currentQcm.map(item => (
+                        <QuestionLine key={item.id}  Question={item.Questions.Text} choice1 ={item.Questions.Responses[0].Text} choice2 ={item.Questions.Responses[1].Text} choice3 ={item.Questions.Responses[2].Text}choice4 ={item.Questions.Responses[3].Text}  />
+                    ))}
                     <div>
                         <button type="submit" class=" w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
                     </div>
