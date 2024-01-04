@@ -6,10 +6,7 @@ const exam = new Schema({
           Desc : String,
           Teacher : String,
           Qnbr: Number,
-          Duree : {
-            type: Number,
-            default: 30
-        }
+
 });
 const Exam = model('exam', exam);
 

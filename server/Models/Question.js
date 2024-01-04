@@ -19,6 +19,10 @@ const question = new Schema({
 });
 const questions = new Schema({
     Name: String ,
+    Duree : {
+        type: Number,
+        default: 30
+    },
     Questions:[question],
 });
 
