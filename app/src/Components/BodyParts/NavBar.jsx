@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Logo from "../../Assets/img/Logo.png"
 import "../../Assets/css/NavBar.css"
+import axios from 'axios';
 const NavBar = () => {  
-     const [Mobile,setMobile] = useState(false);      
+     const [Mobile,setMobile] = useState(false);  
+	 const navigate = useNavigate();
+	 const HandleLogout = async() => {
+		try {
+            const response = await axios.get('http://localhost:3000/api/logout');
+			if(response.data === true){
+				navigate('/')
+			}
+          } catch (error) {
+            console.error(error);
+          }
+	 }
     return (
      <>
         <nav class="z-50 w-full fixed px-4 py-4 flex justify-between items-center bg-white shadow-md">
@@ -33,7 +45,7 @@ const NavBar = () => {
                <li class="text-sm text-gray-400 hover:text-sky-600 font-bold"  ><NavLink to="/Home/Profil"  href="#">Profil</NavLink></li>
 		</ul>
           <div class="SwitchButtuns">
-               <NavLink to=""><button class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" > Log Out <i class="fa-solid fa-right-from-bracket ml-1"></i> </button></NavLink>
+               <button onClick={() => HandleLogout()}  class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" > Log Out <i class="fa-solid fa-right-from-bracket ml-1"></i> </button>
           </div>
 	</nav>
      {Mobile? (
@@ -65,7 +77,7 @@ const NavBar = () => {
 			</div>
 			<div class="mt-auto">
 				<div class="pt-6">
-                    <NavLink to=""> <p class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="#">Log Out <i class="fa-solid fa-right-from-bracket ml-1"></i></p></NavLink>
+                     <p  onClick={() => HandleLogout()}   class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="#">Log Out <i class="fa-solid fa-right-from-bracket ml-1"></i></p>
 				</div>
 			</div>
 		</nav>

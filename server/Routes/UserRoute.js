@@ -1,6 +1,7 @@
 const { getStudentbyEmail } = require("../Controllers/UserController");
 const { Login , Register } = require("../Middlewares/auth");
 const {getAllFields,getField} = require('../Controllers/FieldController')
+const {getExam} = require('../Controllers/ExamController')
 const router = require("express").Router();
 let User = null ;
 
@@ -42,6 +43,21 @@ router.get('/getField/:name', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+router.get('/getExam/:name', async (req, res) => {
+    console.log("calling getExam")
+    try {
+        let result = await getExam(req.params.name);
+        if (result) {
+            console.log(result)
+            res.send(result);
+        } else {
+            console.log('no Exam');
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -62,9 +78,6 @@ router.post('/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-
-
-
 router.post("/Register",async(req,res)=>{
     try{
         let reqi = await getStudentbyEmail(req.body.email);
@@ -94,20 +107,11 @@ router.post('/userinfo', (req, res) => {
 });
 
 router.get("/logout",(req,res)=>{
-    if(req.session.std){
-        req.session.destroy((err)=>{
-            if(err){
-                console.error('ERROR DESTROYING SESSION:', err);
-                res.status(500).send('Internal Server Error');
-            }
-            else{
-                console.log("DESTROYED SUCCESFULLY");
-            }
-        })
-    }
-    else{
-
-    }
+    console.log("calling logout")
+        User = null ;
+        if(User === null){
+            res.send(true)
+        }
 })
 
 module.exports = router;

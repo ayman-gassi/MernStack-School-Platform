@@ -12,7 +12,6 @@ import { useEffect , useState } from "react";
 import axios from 'axios';
 function App() {
   const navigate = useNavigate();
-  const [AllFields,setAllFields] = useState([]);
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -36,8 +35,8 @@ function App() {
                 <Route path="Profil"  element={<Profil></Profil>} />
                 <Route path="MyExams"  element={<MyExams></MyExams>}/>
             </Route>
-            <Route path="/Quiz"  element={<QuizDetail></QuizDetail>} />
-            <Route path="/Quiz/start"  element={<QuizStart></QuizStart>}/>
+            <Route path="/Quiz/prepare/:name"  element={<QuizDetail></QuizDetail>} />
+            <Route path="/Quiz/start/:name"  element={<QuizStart></QuizStart>}/>
             <Route path="*"  element={<PageNotFound></PageNotFound>} />
         </Routes>
       </>

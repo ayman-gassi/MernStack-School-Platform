@@ -29,7 +29,7 @@ export default function FiliereContainer (){
                     </div> 
                     <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
                             {AllFields.map(item => (
-                                <Filiere key={item.id} Name={item.Name} PicSrc={item.PicSrc} Enbr={item.Enbr} Desc={item.Desc.substring(0, 50)} />
+                                <Filiere key={item.id} Name={item.Name} PicSrc={item.PicSrc} Enbr={item.Enbr} Desc={item.Desc.substring(0, 56)} />
                             ))}
                     </div>  
                 </div>

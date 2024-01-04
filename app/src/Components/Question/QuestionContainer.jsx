@@ -84,7 +84,7 @@ export default function QuestionContainer() {
             <div class="relative items-center w-full mx-auto md:px-12 lg:px-24 max-w-7xl">
                 <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
                     {Exam.map(item => (
-                      <Quiz key={item.id}  Name={item.Name}  PicSrc={item.PicSrc}  Teacher={item.Teacher}  Qnbr={item.Qnbr}  />
+                      <Quiz key={item.id}  Name={item.Name}  PicSrc={item.PicSrc}  Teacher={item.Teacher}  Qnbr={item.Qnbr}   />
                     ))}
                 </div>
             </div>
