@@ -1,6 +1,7 @@
 import React, {  useEffect, useState } from 'react';
 import axios from 'axios';
 import Filiere from "./Filiere";
+import DataNotFound from '../BodyParts/DataNotFound';
 
 
 export default function FiliereContainer (){
@@ -28,9 +29,14 @@ export default function FiliereContainer (){
                         
                     </div> 
                     <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-                            {AllFields.map(item => (
+                           {AllFields.length > 0 ? (
+                              AllFields.map(item => (
                                 <Filiere key={item.id} Name={item.Name} PicSrc={item.PicSrc} Enbr={item.Enbr} Desc={item.Desc.substring(0, 56)} />
-                            ))}
+                              ))
+                            ) : (
+                              <DataNotFound title="No Field Found" />
+                            )}
+                           
                     </div>  
                 </div>
             </section>

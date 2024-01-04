@@ -5,6 +5,7 @@ import "../../Assets/css/Question.css"
 import { useParams } from 'react-router-dom';
 import { useState , useEffect } from "react";
 import axios from 'axios';
+import DataNotFound from '../BodyParts/DataNotFound';
 export default function QuestionContainer() {
   let { name } = useParams();
   const [CurrentField,setCurrentField] = useState([]);
@@ -83,9 +84,13 @@ export default function QuestionContainer() {
     <div className="QuestionContainer mt-15 mb-4">
             <div class="relative items-center w-full mx-auto md:px-12 lg:px-24 max-w-7xl">
                 <div class="grid w-full grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
-                    {Exam.map(item => (
+                {Exam.length > 0 ? (
+                    Exam.map(item => (
                       <Quiz key={item.id}  Name={item.Name}  PicSrc={item.PicSrc}  Teacher={item.Teacher}  Qnbr={item.Qnbr}   />
-                    ))}
+                    ))
+                ):(
+                    <DataNotFound  title = "No Exams Found" />
+                 )}
                 </div>
             </div>
 
