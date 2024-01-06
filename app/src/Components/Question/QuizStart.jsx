@@ -17,7 +17,7 @@ export default function QuizStart(){
         [question]: selectedOption
       }));
     };
-    const Result = () => {
+    const Result = async() => {
       let Total = 0;
       currentQcm.forEach(item => {
         const Ques = item.Text;
@@ -27,8 +27,16 @@ export default function QuizStart(){
           }
         });
       });
-      setTotal(Total)
-      setFinish(true)
+      try {
+        let finalGrade = Total + '-' + currentQcm.length;
+        const response = await axios.post('http://localhost:3000/api/saveGrade/'+name +"/"+finalGrade);
+        if(response.data === true ){
+            setTotal(Total)
+            setFinish(true)
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
     useEffect(()=>{
       const fetchData = async () => {
@@ -62,6 +70,7 @@ export default function QuizStart(){
         event.returnValue = window.confirm();
       }
     };
+  
       window.addEventListener('beforeunload',handleBeforeUnload);
         return(
             <> 

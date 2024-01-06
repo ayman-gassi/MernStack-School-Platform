@@ -3,6 +3,7 @@ const { Login , Register } = require("../Middlewares/auth");
 const {getAllFields,getField} = require('../Controllers/FieldController')
 const {getExam} = require('../Controllers/ExamController')
 const {getAllQuestions} = require('../Controllers/QuestionController')
+const {addGrade,getGrades} = require('../Controllers/GradeController')
 const router = require("express").Router();
 let User = null ;
 
@@ -14,7 +15,6 @@ router.post('/Connection', async (req, res) => {
             res.send(false)
         }
 });
-
 router.get('/getAllFields', async (req, res) => {
     try {
         let result = await getAllFields();
@@ -86,6 +86,7 @@ router.post("/Register",async(req,res)=>{
             let result = await Register(req.body.firstName, req.body.lastName,req.body.email , req.body.gender,req.body.password);
             if(result){
                 req.session.user = result ; 
+                User = result;
                 console.log("REGISTER SUCCESSFULLY")
                 res.send(true)
             }
@@ -109,11 +110,40 @@ router.post("/start/:name",async(req,res)=>{
     try{
         let result = await getAllQuestions(name);
         if(result){
-            console.log(result);
             res.send(result);
         }
     }catch(error){
         console.log("ERROR"+error);
+    }
+});
+router.post('/saveGrade/:Exam/:Grade', async (req, res) => {
+    console.log(req.params.Exam + "  " + req.params.Grade)
+    try {
+        let result = await addGrade(req.params.Exam,User.Email,req.params.Grade);
+        if (result) {
+            res.send(true);
+        } else {
+            res.send(false);
+            console.log('no field');
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+router.get('/getGrade', async (req, res) => {
+    console.log("calling getGrade")
+    try {
+        let result = await getGrades(User.Email);
+        if (result) {
+            console.log(result)
+            res.send(result);
+        } else {
+            console.log('no grades');
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
     }
 });
 router.get("/logout",(req,res)=>{
