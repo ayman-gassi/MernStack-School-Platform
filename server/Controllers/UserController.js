@@ -10,9 +10,9 @@ async function getStudentbyEmail(email,job='Student'){
     }
 }
 
-async function getStudentbyEmail_Password(email, password, job = 'Student') {
+async function getStudentbyEmail_Password(email, password) {
     try {
-        const result = await Person.findOne({ Email: email, Password: password, Job: job });
+        const result = await Person.findOne({ Email: email, Password: password});
         return result;
     } catch (e) {
         console.error("Error during getStudentbyEmail_Password:", e);

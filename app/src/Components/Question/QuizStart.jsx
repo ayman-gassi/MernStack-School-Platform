@@ -28,8 +28,7 @@ export default function QuizStart(){
         });
       });
       try {
-        let finalGrade = Total + '-' + currentQcm.length;
-        const response = await axios.post('http://localhost:3000/api/saveGrade/'+name +"/"+finalGrade);
+        const response = await axios.post('http://localhost:3000/api/saveGrade/'+name +"/"+Total +"/"+currentQcm.length);
         if(response.data === true ){
             setTotal(Total)
             setFinish(true)
@@ -38,6 +37,7 @@ export default function QuizStart(){
         console.error(error);
       }
     };
+
     useEffect(()=>{
       const fetchData = async () => {
         try {

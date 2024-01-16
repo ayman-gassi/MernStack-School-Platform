@@ -9,6 +9,15 @@ async function getAllFields(){
         throw e ;
     }
 }
+async function getAllFieldsByTeacher(Name){
+    try{
+        const result = await Exam.find({Teacher : Name});
+        return result ;
+    }catch(e){
+        console.log(e);
+        throw e ;
+    }
+}
 async function getField(name){
     try{
         const field = await Field.findOne({Name : name});
@@ -20,4 +29,4 @@ async function getField(name){
         throw e ;
     }
 }
-module.exports = {getAllFields,getField}
+module.exports = {getAllFields,getField,getAllFieldsByTeacher}

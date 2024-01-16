@@ -32,8 +32,9 @@ import axios from 'axios';
                 },
             });
 
-            if (response.data===true) {
-                navigate('/Home');
+            if (response.data.Exist === true) {
+                if(response.data.Entity === "Student") navigate('/Home');
+                if(response.data.Entity === "Teacher") navigate('/Admin/Dashboard')
             } else {
                 setLoginErrorSection(true);
                 setError("Email or Password incorrect")
@@ -64,9 +65,10 @@ import axios from 'axios';
                     },
                 });
     
-                if (response.data===true) {
-                    navigate('/Home');
-                } else {
+                if (response.data.Exist === true) {
+                    if(response.data.Entity === "Student") navigate('/Home');
+                    if(response.data.Entity === "Teacher") navigate('/Admin/Dashboard')
+                }  else {
                     console.error('Login failed:', response.data.message);
                     setRegisterErrorSection(true)
                     setError("User allready Exist")

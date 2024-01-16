@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoute = require("./Routes/UserRoute");
+const adminRoute = require("./Routes/AdminRoute");
 const bodyParser = require('body-parser');
 const app = express();
 const session = require("express-session")
@@ -23,5 +24,6 @@ db.on('error', console.error.bind(console, 'Connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB database');
     app.use("/api", userRoute);
+    app.use("/SuperApi", adminRoute);
 }); 
 app.listen(3000);

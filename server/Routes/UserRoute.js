@@ -9,10 +9,10 @@ let User = null ;
 
 router.post('/Connection', async (req, res) => {
         if(User === null){
-            res.send(true)
+            res.send({Exist : true})
         }
         else{
-            res.send(false)
+            res.send({Entity : User.Job , Exist : false})
         }
 });
 router.get('/getAllFields', async (req, res) => {
@@ -20,7 +20,7 @@ router.get('/getAllFields', async (req, res) => {
         let result = await getAllFields();
         if (result) {
             res.send(result);
-        } else {
+        } else {    
             console.log('no fields');
         }
     } catch (error) {
@@ -61,14 +61,14 @@ router.post('/login', async (req, res) => {
         const { email, password } = req.body;
         console.log('Attempting login with email:', email);
         let result = await Login(email, password);
-        if (result) {
+        if (result) {   
             req.session.user = result;
             User = result;
-            res.send(true);
+            res.send( {Entity : User.Job , Exist : true});
             console.log("LOGIN SUCCESSFULLY");
         } else {
             console.log('Invalid credentials');
-            res.send(false);
+            res.send( {Exist : false});
         }
     } catch (error) {
         console.error("Error during login:", error);
@@ -79,7 +79,7 @@ router.post("/Register",async(req,res)=>{
     try{
         let reqi = await getStudentbyEmail(req.body.email);
         if(reqi){
-            res.send(false);
+            res.send( {Exist : false});
             console.log(" EMAIL ALREADY EXIST ")
         }
         else{
@@ -88,7 +88,7 @@ router.post("/Register",async(req,res)=>{
                 req.session.user = result ; 
                 User = result;
                 console.log("REGISTER SUCCESSFULLY")
-                res.send(true)
+                res.send( {Entity : User.Job , Exist : true});
             }
         }
     }catch (error) {
@@ -100,7 +100,7 @@ router.post("/Register",async(req,res)=>{
 })
 
 router.post('/userinfo', (req, res) => {
-    console.log(req.session.user)
+    console.log("Current user : "+User.FirstName)
     res.send(User)
 });
 
@@ -116,10 +116,10 @@ router.post("/start/:name",async(req,res)=>{
         console.log("ERROR"+error);
     }
 });
-router.post('/saveGrade/:Exam/:Grade', async (req, res) => {
+router.post('/saveGrade/:Exam/:Grade/:Qnbr', async (req, res) => {
     console.log(req.params.Exam + "  " + req.params.Grade)
     try {
-        let result = await addGrade(req.params.Exam,User.Email,req.params.Grade);
+        let result = await addGrade(req.params.Exam,User.Email,req.params.Grade + '/' + req.params.Qnbr );
         if (result) {
             res.send(true);
         } else {
@@ -136,7 +136,6 @@ router.get('/getGrade', async (req, res) => {
     try {
         let result = await getGrades(User.Email);
         if (result) {
-            console.log(result)
             res.send(result);
         } else {
             console.log('no grades');
