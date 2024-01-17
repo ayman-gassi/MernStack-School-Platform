@@ -1,7 +1,6 @@
 import { useState ,useEffect } from "react";
 import axios  from "axios";
 import Field from "./Field";
-import CreateField from "./CreateField";
 export default function Main(){
   const [AllFields,setAllFields] = useState([]);
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function Main(){
       `}</style>
       <h3 className="text-3xl font-extralight text-white/50 mt-1">Create Exam</h3>
         <div className="IUY max-h-96 mb-10 sm:mb-0 mt-5 grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        <CreateField></CreateField>
        {AllFields.length > 0 && (
               AllFields.map(item => (
                   <Field key={item.id} Name={item.Name} PicSrc={item.PicSrc} Enbr={item.Enbr} />
