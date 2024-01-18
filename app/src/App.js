@@ -6,9 +6,10 @@ import Home from "./Components/Home/Home";
 import QuestionContainer from "./Components/Question/QuestionContainer";
 import QuizDetail from "./Components/Question/QuizDetail";
 import QuizStart from "./Components/Question/QuizStart";
-import Profil from "./Components/Dashboard/Profil";
+import SuperProfil from "./Components/Dashboard/SuperProfil";
+import Profil from "./Components/Profil/Profil";
 import MyExams from "./Components/QuestionResult/MyExams";
-import { useEffect , useState } from "react";
+import { useEffect} from "react";
 import axios from 'axios';
 import AdminContainer from "./Components/Dashboard/AdminContainer";
 import Main from "./Components/Dashboard/Main";
@@ -46,7 +47,7 @@ function App() {
                            <Route path="Dashboard" element={<Main></Main>}  />
                            <Route path="AddExam/:Field" element={<AddExam></AddExam>}  />
                            <Route path="MyExams" element={<AllQuiz></AllQuiz>}  />
-                           <Route path="Profil" element={<Profil></Profil>}  />
+                           <Route path="Profil" element={<SuperProfil></SuperProfil>}  />
                   </Route>
          </Routes>
       </>

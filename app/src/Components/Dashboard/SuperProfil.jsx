@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios  from 'axios';
 import Male from "../../Assets/img/teacherM.png";
 import Female from "../../Assets/img/teacherF.png";
-export default function Profil(){
+export default function SuperProfil(){
 	const [Data, setData] = useState([]);
 	useEffect(() => {
 		const fetchData = async () => {
