@@ -42,4 +42,13 @@ If you don't want to create your own data, you can use an existing database. All
 2. Run the command `npm i` to install the required packages.
 3. Launch the app using `npm start`.
 
+## How To Use
+### Student
+The Student  choose the Field then the exam . After passing the exam he can see his grade in the `Grade Page` 
+### Teacher 
+The techer can create a exam for the Students by clicking on the `Field` , inserting all the the informations about the exam .
+After that , the teacher add the questions with their answers , he must click to the green button `validate` to add the question to the exam.
+
+
+
 
