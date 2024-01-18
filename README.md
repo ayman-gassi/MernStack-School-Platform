@@ -1,4 +1,4 @@
-# University Platform
+# School Platform
 This project is designed to simplify the process of adding exams for professors while providing students with a user-friendly interface to log in, take exams, and check their grades.
 
 ## Project Collaboration
