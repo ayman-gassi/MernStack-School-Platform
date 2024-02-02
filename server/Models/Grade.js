@@ -6,4 +6,4 @@ const grade = new Schema({
 });
 const Grade = model('grade', grade);
 
-module.exports = {Grade}
+module.exports = {Grade}    
